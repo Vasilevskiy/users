@@ -11,6 +11,9 @@
     outline: none;
     border: 1px solid $black;
     padding-left: 10px;
+      @include breakpoint(desktop) {
+        width: 600px;
+      }
       @include breakpoint(laptop) {
         width: 400px;
       }
@@ -32,6 +35,7 @@
 .table-container {
   text-align: center;
   overflow: auto;
+  font-size: 16px;
   @include breakpoint(phablet) {
     font-size: 11px;
   }

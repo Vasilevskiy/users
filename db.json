@@ -5,21 +5,21 @@
       "name": "Customer001",
       "email": "customer001@email.com",
       "tel": "0526252525",
-      "date": "14.09.2018"
+      "date": "14/09/2018"
     },
     {
       "id": 2,
       "name": "Customer002",
       "email": "customer002@email.com",
       "tel": "0527252525",
-      "date": "14.09.2018"
+      "date": "14/09/2018"
     },
     {
-      "id": 3,
-      "name": "Customer003",
-      "email": "customer003@email.com",
-      "tel": "0528252525",
-      "date": "14.09.2018"
+      "name": "Andrey Vas",
+      "email": "andreyvasilevsky8@gmail.com",
+      "tel": "0992586021",
+      "date": "9/17/2018",
+      "id": 3
     }
   ]
 }

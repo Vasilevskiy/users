@@ -8,18 +8,18 @@ $white: #fff;
 
 @mixin breakpoint($point) {
     @if $point == desktop {
-        @media(min-width: 70em) { @content ; }
+      @media screen and (min-width: 980px) { @content ; }
     }
     @else if $point == laptop {
-        @media(min-width: 64em) { @content ; }
+      @media(min-width: 64em) { @content ; }
     }
     @else if $point == tablet {
-        @media(min-width: 50em) { @content ; }
+      @media screen  and (max-width: 979px) { @content ; }
     }
     @else if $point == phablet {
-        @media(min-width: 37.5em) { @content ; }
+      @media screen and (max-width: 500px) { @content ; }
     }
     @else if $point == mobile {
-        @media(min-width: 30em) { @content ; }
+      @media screen and (max-width: 500px) { @content ; }
     }
 }

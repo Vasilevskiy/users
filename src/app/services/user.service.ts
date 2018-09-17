@@ -18,8 +18,11 @@ export class UserService {
     return this._http.post(this.customersUrl, customer);
   }
 
+  saveEditedCustomer(customer): Observable<any> {
+    return this._http.put(this.customersUrl + customer.id, customer);
+  }
+
   deleteCustomer(customerId: number): Observable<any> {
-    console.log(customerId);
     return this._http.delete(this.customersUrl + customerId);
   }
 

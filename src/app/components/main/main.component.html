@@ -9,7 +9,7 @@
     <div class="col-12 search-container">
       <input type="text" placeholder="search" class="search-input" (keyup)="search(searchVal)" [(ngModel)]="searchVal">
       <button type="button" class="btn btn-success big" (click)="addNewCustomer()">Add New Customer</button>
-      <button type="button" class="btn btn-success small" (click)="addNewCustomer()">+</button>
+      <button type="button" class="btn btn-success small" (click)="addNewCustomer()"><i class="fa fa-plus" aria-hidden="true"></i></button>
     </div>
   </div>
   <div class="row mt-4">
@@ -29,13 +29,14 @@
           <p *ngIf="filteredCustomers.length < 1">Nothing to show yet</p>
               <th scope="row">
                   <a href="#"  (click)="deleteModal(customer)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                  <a href="#" (click)="edit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                  <a href="#" (click)="edit(customer)" *ngIf="!editStart"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                  <a href="#" (click)="save()" *ngIf="customer.id === isEdit && editStart"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
                 </th>
-                <td>{{customer?.name}}</td>
-                <td>{{customer?.email}}</td>
-                <td>{{customer?.tel}}</td>
+                <td><input type="text" *ngIf="customer.id === isEdit" [value]="selectedCustomer?.name" [(ngModel)]="selectedCustomer.name">{{customer?.id !== isEdit ? customer?.name : null}}</td>
+                <td><input type="text" *ngIf="customer.id === isEdit" [value]="selectedCustomer?.email" [(ngModel)]="selectedCustomer.email">{{customer?.id !== isEdit ? customer?.email : null}}</td>
+                <td><input type="text" *ngIf="customer.id === isEdit" [value]="selectedCustomer?.tel" [(ngModel)]="selectedCustomer.tel">{{customer?.id !== isEdit ? customer?.tel : null}}</td>
                 <td>{{customer?.date}}</td>
-          
+
           <!-- <ng-container #editState>
             <th scope="row">
               <a href="#"  (click)="delete(customer)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>

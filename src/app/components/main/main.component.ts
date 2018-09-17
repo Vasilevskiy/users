@@ -15,7 +15,8 @@ export class MainComponent {
 
   deleteShow = false;
   addCustomer = false;
-  isEdit = false;
+  isEdit: number;
+  editStart = false;
   customers: CustomersModel[];
   filteredCustomers = [];
   customersAll = 0;
@@ -70,12 +71,29 @@ export class MainComponent {
     this.getButtonCount();
   }
 
-  edit(): void {
-    this.isEdit = !this.isEdit;
+  edit(customer): void {
+    this.isEdit = customer.id;
+    this.selectedCustomer = customer;
+    this.editStart = true;
+  }
+
+  save() {
+    this.filteredCustomers.map(res => {
+      if (res.id === this.selectedCustomer.id) {
+        res.name = this.selectedCustomer.name;
+        res.email = this.selectedCustomer.email;
+        res.tel = this.selectedCustomer.tel;
+      }
+    });
+    this._userService.saveEditedCustomer(this.selectedCustomer).subscribe(res => res);
+
+    this.editStart = false;
+    this.isEdit = null;
+
   }
 
   search(value: string): void {
-    if (value !== '') {
+    if (value.length > 0) {
       this.filteredCustomers = this.customers.filter((res: CustomersModel) => {
         if (res.name.toLowerCase().includes(value) ||
             res.email.toLowerCase().includes(value) ||
