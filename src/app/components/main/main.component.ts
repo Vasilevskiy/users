@@ -29,9 +29,20 @@ export class MainComponent {
   getCustomers(): void {
     this._userService.getCustomers().subscribe((res: CustomersModel[]) => {
       this.customers = res;
+      this.sortCustomers();
       this.filteredCustomers = this.customers.slice(this.currentPage, this.customersPerPage);
       this.customersAll = this.customers.length;
       this.buttonCount = this.getButtonCount();
+    });
+  }
+
+  sortCustomers(): void {
+    this.customers = this.customers.sort( (a, b ): any => {
+      if (a.date > b.date) {
+        return 1;
+      } else if (a.date < b.date) {
+        return -1;
+      }
     });
   }
 
@@ -40,9 +51,10 @@ export class MainComponent {
   }
 
   selectPage(num: number): void {
-    if (num !== this.currentPage && this.buttonCount > 1) {
+    if (num !== this.currentPage) {
       this.currentPage = num;
     }
+
     const begin = this.currentPage * this.customersPerPage;
     const end = begin + this.customersPerPage;
     this.filteredCustomers = this.customers.slice(begin, end);
@@ -55,6 +67,7 @@ export class MainComponent {
       this.customers = this.filteredCustomers;
       this.customersAll = this.filteredCustomers.length;
     }
+    this.getCustomers();
   }
 
   deleteModal(customer: CustomersModel): void {
@@ -65,19 +78,18 @@ export class MainComponent {
   delete(customer: CustomersModel): void {
     this.filteredCustomers.splice(this.filteredCustomers.indexOf(customer), 1);
     this.customers = this.filteredCustomers;
-    this._userService.deleteCustomer(customer.id).subscribe(res => console.log(res));
+    this._userService.deleteCustomer(customer.id).subscribe(res => this.getCustomers());
     this.customersAll = this.filteredCustomers.length;
     this.deleteShow = !this.deleteShow;
-    this.getButtonCount();
   }
 
-  edit(customer): void {
+  edit(customer: CustomersModel): void {
     this.isEdit = customer.id;
     this.selectedCustomer = customer;
     this.editStart = true;
   }
 
-  save() {
+  save(): void {
     this.filteredCustomers.map(res => {
       if (res.id === this.selectedCustomer.id) {
         res.name = this.selectedCustomer.name;
@@ -86,10 +98,8 @@ export class MainComponent {
       }
     });
     this._userService.saveEditedCustomer(this.selectedCustomer).subscribe(res => res);
-
     this.editStart = false;
     this.isEdit = null;
-
   }
 
   search(value: string): void {

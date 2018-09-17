@@ -1,7 +1,4 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {UserService} from '../../services/user.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {CustomersModel} from '../../models/customers.model';
 
 @Component({
   selector: 'app-modal-delete',

@@ -1,19 +1,16 @@
-import { Component } from '@angular/core';
-
+import {Component} from '@angular/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  language = 'English';
-  title = 'app';
+  language: string;
 
-  constructor() {
-     console.log(this.language);
-  }
+  constructor() { this.language = localStorage.getItem('lang'); }
 
-  changeLang() {
-    console.log();
+  changeLang(): void {
+    localStorage.setItem('lang', this.language);
+    location.reload();
   }
 }

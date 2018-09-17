@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1 class="display-4">User Management</h1>
+      <h1 class="display-4" i18n>User Management</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, veniam!</p>
     </div>
   </div>
   <div class="row mt-4">
     <div class="col-12 search-container">
       <input type="text" placeholder="search" class="search-input" (keyup)="search(searchVal)" [(ngModel)]="searchVal">
-      <button type="button" class="btn btn-success big" (click)="addNewCustomer()">Add New Customer</button>
-      <button type="button" class="btn btn-success small" (click)="addNewCustomer()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-success big" (click)="addNewCustomer(null)" i18n>Add New Customer</button>
+      <button type="button" class="btn btn-success small" (click)="addNewCustomer(null)"><i class="fa fa-plus" aria-hidden="true"></i></button>
     </div>
   </div>
   <div class="row mt-4">
@@ -18,10 +18,10 @@
         <thead>
         <tr>
           <th scope="col"></th>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Telephone</th>
-          <th scope="col">Created Date</th>
+          <th scope="col" i18n>Name</th>
+          <th scope="col" i18n>Email</th>
+          <th scope="col" i18n>Telephone</th>
+          <th scope="col" i18n>Created Date</th>
         </tr>
         </thead>
         <tbody>
@@ -32,9 +32,9 @@
                   <a href="#" (click)="edit(customer)" *ngIf="!editStart"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                   <a href="#" (click)="save()" *ngIf="customer.id === isEdit && editStart"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
                 </th>
-                <td><input type="text" *ngIf="customer.id === isEdit" [value]="selectedCustomer?.name" [(ngModel)]="selectedCustomer.name">{{customer?.id !== isEdit ? customer?.name : null}}</td>
-                <td><input type="text" *ngIf="customer.id === isEdit" [value]="selectedCustomer?.email" [(ngModel)]="selectedCustomer.email">{{customer?.id !== isEdit ? customer?.email : null}}</td>
-                <td><input type="text" *ngIf="customer.id === isEdit" [value]="selectedCustomer?.tel" [(ngModel)]="selectedCustomer.tel">{{customer?.id !== isEdit ? customer?.tel : null}}</td>
+                <td><input class="edit-input" type="text" *ngIf="customer.id === isEdit" [value]="selectedCustomer?.name" [(ngModel)]="selectedCustomer.name">{{customer?.id !== isEdit ? customer?.name : null}}</td>
+                <td><input class="edit-input" type="text" *ngIf="customer.id === isEdit" [value]="selectedCustomer?.email" [(ngModel)]="selectedCustomer.email">{{customer?.id !== isEdit ? customer?.email : null}}</td>
+                <td><input class="edit-input" type="text" *ngIf="customer.id === isEdit" [value]="selectedCustomer?.tel" [(ngModel)]="selectedCustomer.tel">{{customer?.id !== isEdit ? customer?.tel : null}}</td>
                 <td>{{customer?.date}}</td>
 
           <!-- <ng-container #editState>
